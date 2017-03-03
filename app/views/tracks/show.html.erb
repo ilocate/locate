@@ -1,0 +1,34 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>User:</strong>
+  <%= @track.user_id %>
+</p>
+
+<p>
+  <strong>Start at:</strong>
+  <%= @track.start_at %>
+</p>
+
+<p>
+  <strong>End at:</strong>
+  <%= @track.end_at %>
+</p>
+
+<p>
+  <strong>Label:</strong>
+  <%= @track.label_id %>
+</p>
+
+<p>
+  <strong>Note:</strong>
+  <%= @track.note %>
+</p>
+
+<p>
+  <strong>Is manual:</strong>
+  <%= @track.is_manual %>
+</p>
+
+<%= link_to 'Edit', edit_track_path(@track) %> |
+<%= link_to 'Back', tracks_path %>

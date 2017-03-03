@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>User:</strong>
+  <%= @label.user_id %>
+</p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @label.name %>
+</p>
+
+<p>
+  <strong>Is open:</strong>
+  <%= @label.is_open %>
+</p>
+
+<%= link_to 'Edit', edit_label_path(@label) %> |
+<%= link_to 'Back', labels_path %>

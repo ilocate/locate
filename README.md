@@ -53,7 +53,8 @@
 
 | 字段名 | 参数 | 类型 | 说明 |
 | ---- | ---- | ---- | ---- |
-| 用户名 | nickname | string | 默认随机生成，允许修改一次 |
+| 用户名 | username | string | 默认随机生成，允许修改一次 |
+| 昵称 | nickname | string | 昵称 |
 | 手机 | phone | string |  |
 | 密码 | encrypted_password | string |  |
 | 性别 | sex | boolean |  |
@@ -63,22 +64,60 @@
 | 状态 | state | integer | 是否激活？ 允许登陆等.. |
 | 设置 | setting | text |  |
 
+rails g scaffold users  username:string  nickname:string phone:string encrypted_password:string sex:boolean  age:integer bio:string avatar:string state:integer setting:text
 
 ### 轨迹段/Track
+
 id
 user_id
 start_at
 end_at
 label_id
 note
+is_manual
 
-### 轨迹点/point
+rails g scaffold tracks  user_id:integer start_at:datetime end_at:datetime label_id:integer note:string is_manual:boolean
+
+rails d scaffold tracks  user_id:integer start_at:datetime end_at:datetime label_id:integer note:string
+
+is_manual
+latitude
+longitude
+
+### 轨迹点/Point
 id
 track_id
 created_at
-lat(double)
-lng(double)
+latitude(decimal)
+longitude(decimal)
 
-### 标签/label
+address
+
+rails g scaffold points  track_id:integer latitude:decimal longitude:decimal address:string
+
+### 标签/Label
 id
 name
+
+
+rails g scaffold labels  user_id:integer  name:string is_open:boolean
+
+
+
+## 接口
+
+### 发送定位接口
+
+>POST  /api/locates.json
+
+| 参数 | 类型 | 说明 |
+| ---- | ---- | ---- |
+| user_id | integer | 用户id，非必填|
+| latitude | decimal | 纬度，必填 |
+| longitude | decimal |经度，必填 |
+| label | string |标签，非必填|
+| note | string | 备注，非必填 |
+| is_manual | boolean | 是否手动，必填 ，默认自动|
+
+- 接口示例
+https://ilocate.cheenwe.cn:9871/api/locates.json?latitude=xxx&longitude=xxx
